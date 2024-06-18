@@ -1,0 +1,88 @@
+{%include 'header.html'%}
+
+<body>
+    <div>
+      
+    <form action="/recordpoints" method="POST">
+      <label for="radio1">
+        <input type="radio" id="radio1" name="radio" value="Championship"> Championship
+      </label>
+      <label for="radio2">
+        <input type="radio" id="radio2" name="radio" value="Non Championship"> Non Championship
+      </label>
+      <table>
+        <tr><td><label for="text1">Student Number:</label></td><td><input type="text" id="text1" name="studentNo" value = "{{sId}}"></td></tr>
+        <tr><td><label for="text2">Place:</label></td><td><input type="text" id="text1" name="place"></td></tr>
+
+      </table>
+      <!-- This div will be populated based on selected radio button -->
+        <table id="textbox-table">
+            <tbody id="textbox-container">
+                <!-- Textboxes will be added here dynamically -->
+            </tbody>
+        </table>
+
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    </div>
+    <!-- Script for search function -->
+    <script>
+    function sendValue(value) {
+    var studentId = value.split(',')[0];  // Extract student ID 
+    $.ajax({
+      url: '/handleSelection',
+      type: 'POST',
+      data: { student_id: studentId },
+      success: function(response) {
+         // Update the content of the page with the new response
+      $('body').html(response);
+      },
+      error: function(error) {
+        console.error("Error sending selection:", error);
+      }
+    })
+  }
+      $(document).ready(function() {
+        $('#search-box').on('input', function() {
+          var query = $(this).val();
+          if (query.length > 0) {
+            $.ajax({
+              url: '/search',
+              type: 'POST',
+              data: {query: query},
+              dataType: 'json',
+              success: function(response) {
+                $('#search-results').empty();
+                response.options.forEach(function(option) {
+                  $('#search-results').append('<button type="button" class="btn btn-primary mb-1" onclick="sendValue(\'' + option + '\')">' + option + '</button>');;
+                });
+              }
+            });
+          } else {
+            $('#search-results').empty();
+          }
+        });
+      });
+            // Function to toggle textboxes based on selected radio button
+            function toggleTextboxes() {
+                var container = document.getElementById("textbox-container");
+                var table = document.getElementById("textbox-table");
+                var radio1 = document.getElementById("radio1");
+                var radio2 = document.getElementById("radio2");
+    
+                container.innerHTML = ""; // Clear previous content
+    
+                // Add textboxes based on selected radio button
+                if (radio1.checked) {
+                    container.innerHTML += '<tr><td><label for="text3">Time:</label></td><td><input type="text" id="text1" name="time"></td></tr>';
+                }
+               
+            }
+            // Event listener to call toggleTextboxes() on radio button change
+            document.getElementById("radio1").addEventListener("change", toggleTextboxes);
+            document.getElementById("radio2").addEventListener("change", toggleTextboxes);
+        </script>
+        
+</body>
+</html>

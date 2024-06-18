@@ -1,0 +1,95 @@
+.material-symbols-outlined {
+    vertical-align:middle;
+    font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+  
+
+.a:hover {
+    font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+
+  color:red;
+}
+
+.container-fluid {
+    background-color: hsla( 209.58 , 100% , 28.24% , 1 );
+    text-align: center;
+}
+
+a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+td {
+    text-align: center;
+}
+
+.navbar-custom {
+    height: 100px;
+    border-radius: 0px;
+    border-width: 0px;
+}
+
+.container-fluid {
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+        height: auto;
+        color: white;
+        align-content: space-around;
+    }
+
+}
+
+/* WHY IS IT LIKE THIS THIS HURTS MY HEAD */
+.navbar-inverse .navbar-nav>.active>a {
+    color:white;
+    background-color: #00000000;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+a {
+    text-align: center;
+    font-size: 16px;
+    flex-direction: column;
+
+    
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+    background-color: #00000000;
+}
+
+.navbar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    height: 50px;
+    width: 50px;
+}
+
+.loginholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

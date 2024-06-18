@@ -1,0 +1,37 @@
+<!doctype html>
+{%include 'header.html'%}
+<head>
+    <Title>Points</Title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/style.css')}}">
+    <style>
+        .loginholder {
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nomination</h1>
+    <div class="loginholder">
+        {% if error != ""%}
+        <label style="color: red;">{{error}}</label>
+        {%endif%}
+        {% if success != ""%}
+        <label style="color: green;">{{success}}</label>
+        {%endif%}
+        
+        <div>Nomination Status:
+            {% if nominated %}
+                <span>Nominated</span>
+            {% else %}
+                <span>Not Nominated</span>
+            {%endif%}
+        </div>
+
+        <form action="/nominate" method="post">
+            <button type = "submit" value = 'submit'>Un/nominate</button>
+        </form>
+    </div>
+
+
+</body>
+</html>

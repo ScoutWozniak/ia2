@@ -1,0 +1,63 @@
+<!doctype html>
+{%include 'header.html'%}
+<head>
+    <Title>Welcome Page</Title>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        body {
+            font-family: "Poppins", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        td {
+            text-align: center;
+            font-size: 800;
+            padding: 10px;
+            border: 2px, solid black;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+        .tableHeader {
+            background-color: darkgray;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+<body>
+    {% if loggedIn %}
+    <div class="container">
+        <h1>Welcome, {{name}}!</h1>
+    </div>
+    {%endif%}
+    <div class="container">
+        <h2>Live House Results:</h2>
+        <table>
+            <tr>
+                <td class="tableHeader">HOUSE</td>
+                <td class="tableHeader">POINTS</td>
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{item.house}}</td>
+                <td>{{item.points}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
